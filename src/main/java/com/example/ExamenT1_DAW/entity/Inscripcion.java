@@ -11,8 +11,8 @@ public class Inscripcion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
-    @Column(name="fechaIncripcion", nullable = false)
-    private LocalDate fechaIncripcion;
+    @Column(name="fechaInscripcion", nullable = false)
+    private LocalDate fechaInscripcion;
 
     @ManyToOne()
     @JoinColumn(name = "curso_id")
@@ -22,18 +22,17 @@ public class Inscripcion {
     @JoinColumn(name = "estudiante_id")
     private Estudiante estudiante;
 
-    private Estado estado;
+    private EstadoInscripcion estado;
 
-    public enum Estado {
+    public enum EstadoInscripcion {
             PENDIENTE, CONFIRMADA, CANCELADA
     }
 
-    public Inscripcion(Estado estado, Estudiante estudiante, LocalDate fechaIncripcion, Curso curso, long id) {
+    public Inscripcion(EstadoInscripcion estado, Estudiante estudiante, LocalDate fechaInscripcion, Curso curso) {
         this.estado = estado;
         this.estudiante = estudiante;
-        this.fechaIncripcion = fechaIncripcion;
+        this.fechaInscripcion = fechaInscripcion;
         this.curso = curso;
-        Id = id;
     }
 
     public Inscripcion() {
@@ -47,11 +46,11 @@ public class Inscripcion {
         Id = id;
     }
 
-    public Estado getEstado() {
+    public EstadoInscripcion getEstado() {
         return estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void setEstado(EstadoInscripcion estado) {
         this.estado = estado;
     }
 
@@ -64,11 +63,11 @@ public class Inscripcion {
     }
 
     public LocalDate getFechaIncripcion() {
-        return fechaIncripcion;
+        return fechaInscripcion;
     }
 
     public void setFechaIncripcion(LocalDate fechaIncripcion) {
-        this.fechaIncripcion = fechaIncripcion;
+        this.fechaInscripcion = fechaIncripcion;
     }
 
     public Curso getCurso() {
